@@ -1,9 +1,14 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
+	"errors"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/BurntSushi/toml"
 	"github.com/urfave/cli"
@@ -41,7 +46,8 @@ var cmds = []cli.Command{
 }
 
 type Config struct {
-	SaveDir string
+	SaveDir     string
+	HistoryFile string
 }
 
 func loadCfg() (Config, error) {
@@ -69,12 +75,40 @@ func loadCfg() (Config, error) {
 	if err != nil {
 		return Config{}, err
 	}
+	cfg.HistoryFile = filepath.Join(os.Getenv("HOME"), ".zsh_history")
 	f, err := os.Create(file)
 	if err != nil {
 		return Config{}, err
 	}
 	toml.NewEncoder(f).Encode(cfg)
 	return cfg, nil
+}
+
+func selectPeco(list []string) (string, error) {
+	sreader := strings.NewReader(strings.Join(list, "\n"))
+
+	cmd := exec.Command("sh", "-c", "peco")
+	var buf bytes.Buffer
+	cmd.Stderr = os.Stderr
+	cmd.Stdin = sreader
+	cmd.Stdout = &buf
+	err := cmd.Run()
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(buf.String()), err
+}
+
+func scan(description string) (string, error) {
+	fmt.Printf("%s: ", description)
+	scanner := bufio.NewScanner(os.Stdin)
+	if !scanner.Scan() {
+		return "", errors.New("canceld")
+	}
+	if scanner.Err() != nil {
+		return "", scanner.Err()
+	}
+	return scanner.Text(), nil
 }
 
 func run() int {

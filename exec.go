@@ -1,12 +1,10 @@
 package main
 
 import (
-	"bytes"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
 
 	"github.com/urfave/cli"
 )
@@ -26,7 +24,7 @@ func cmdExec(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	cmdFile, err := selectCmdfile(files)
+	cmdFile, err := selectPeco(files)
 	if err != nil {
 		return err
 	}
@@ -44,21 +42,4 @@ func cmdExec(c *cli.Context) error {
 	}
 
 	return nil
-}
-
-func selectCmdfile(files []string) (string, error) {
-	filesreader := strings.NewReader(strings.Join(files, "\n"))
-	// neseccary peco command
-	cmd := exec.Command("sh", "-c", "peco")
-
-	var buf bytes.Buffer
-	cmd.Stderr = os.Stderr
-	cmd.Stdin = filesreader
-	cmd.Stdout = &buf
-	err := cmd.Run()
-	if err != nil {
-		return "", err
-	}
-
-	return strings.TrimSpace(buf.String()), err
 }

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bufio"
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -16,7 +14,7 @@ func cmdSave(c *cli.Context) error {
 		return err
 	}
 
-	title, err := scan("Title")
+	title, err := scan("Alias")
 	if err != nil {
 		return err
 	}
@@ -32,16 +30,4 @@ func cmdSave(c *cli.Context) error {
 	fmt.Fprint(file, command)
 
 	return nil
-}
-
-func scan(description string) (string, error) {
-	fmt.Printf("%s: ", description)
-	scanner := bufio.NewScanner(os.Stdin)
-	if !scanner.Scan() {
-		return "", errors.New("canceld")
-	}
-	if scanner.Err() != nil {
-		return "", scanner.Err()
-	}
-	return scanner.Text(), nil
 }
