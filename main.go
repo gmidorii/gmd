@@ -46,7 +46,7 @@ type Config struct {
 
 func loadCfg() (Config, error) {
 	// TODO: fix for windows
-	dir := filepath.Join(os.Getenv("HOME"), ".config", "gcmd")
+	dir := filepath.Join(os.Getenv("HOME"), ".config", "gmd")
 	if err := os.MkdirAll(dir, 0700); err != nil {
 		return Config{}, fmt.Errorf("failed create dir: %v", err)
 	}
