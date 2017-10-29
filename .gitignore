@@ -1,4 +1,5 @@
 gmd
 vendor/
 Gopkg.lock
+dist/
 
