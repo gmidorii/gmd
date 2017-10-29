@@ -56,7 +56,7 @@ func loadCfg() (Config, error) {
 	_, err := os.Stat(file)
 	// exist file
 	if err == nil {
-		_, err := toml.DecodeFile(file, cfg)
+		_, err := toml.DecodeFile(file, &cfg)
 		if err != nil {
 			return Config{}, err
 		}
@@ -65,16 +65,15 @@ func loadCfg() (Config, error) {
 
 	// init config file
 	cfg.SaveDir = filepath.Join(dir, "_saved")
-	err := os.Mkdir(cfg.SaveDir)
+	err = os.Mkdir(cfg.SaveDir, 0700)
 	if err != nil {
-		return err
+		return Config{}, err
 	}
 	f, err := os.Create(file)
 	if err != nil {
-		return err
+		return Config{}, err
 	}
 	toml.NewEncoder(f).Encode(cfg)
-
 	return cfg, nil
 }
 
