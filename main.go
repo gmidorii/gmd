@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	VERSION = "0.1"
+	VERSION = "v1.0"
 )
 
 var cmds = []cli.Command{
