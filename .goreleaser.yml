@@ -1,0 +1,15 @@
+# .goreleaser.yml
+# Build customization
+builds:
+  - binary: gmd
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+        
+# Release customization
+release:
+  github:
+    owner: midorigreen
+    name: gmd
