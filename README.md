@@ -13,8 +13,8 @@ go get github.com/midorigreen/gmd
 *requirement*  
 [peco](https://github.com/peco/peco)  
 
-### Command
-#### Save command
+## Command
+### Save command
 ```sh
 % gmd save
 ```
@@ -30,7 +30,7 @@ Alias: db_hoge
 Command: mysql -h xxx -u xxx -p
 ```
 
-#### Save command from history
+### Save command from history
 ```sh
 % gmd hist
 ```
@@ -48,7 +48,7 @@ register alias
 Alias: main open
 ```
 
-#### Execute command
+### Execute command
 ```sh
 % gmd exec
 ```
@@ -68,7 +68,7 @@ execute
 Enter password:
 ```
 
-#### Preview command list
+### Preview command list
 ```
 % gmd list
 +---------+------------------------+
@@ -82,7 +82,7 @@ Enter password:
 ```
 
 
-#### Help
+### Help
 ```sh
 NAME:
    gcmd - simple exec saved cmd
@@ -105,6 +105,6 @@ GLOBAL OPTIONS:
    --version, -v  print the version
 ```
 
-### Todo
+## Todo
 - [ ] delete command
 - [ ] config edit command
