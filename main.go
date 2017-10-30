@@ -32,10 +32,10 @@ var cmds = []cli.Command{
 		Action:  cmdSave,
 	},
 	{
-		Name:    "hsave",
+		Name:    "hist",
 		Aliases: []string{"h"},
 		Usage:   "saved new command from hisory",
-		Action:  cmdHSave,
+		Action:  cmdHist,
 	},
 	{
 		Name:    "list",

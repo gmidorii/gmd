@@ -11,7 +11,7 @@ import (
 	"github.com/urfave/cli"
 )
 
-func cmdHSave(c *cli.Context) error {
+func cmdHist(c *cli.Context) error {
 	cfg, err := loadCfg()
 	if err != nil {
 		return err
