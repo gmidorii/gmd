@@ -69,7 +69,7 @@ Enter password:
 ```
 
 ### Preview
-```
+```sh
 % gmd list
 +---------+------------------------+
 |  ALIAS  |        COMMAND         |
@@ -79,6 +79,12 @@ Enter password:
 | log     | git log                |
 | ls      | ls -l                  |
 +---------+------------------------+
+```
+
+### Delete
+```sh
+% gmd del [alias]
+Success Delete Command: [alias]
 ```
 
 
@@ -98,6 +104,7 @@ COMMANDS:
      save, s  saved new command
      hist, h  saved new command from hisory
      list, l  output cmd list
+     del, d   delete cmd list
      help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
@@ -106,5 +113,4 @@ GLOBAL OPTIONS:
 ```
 
 ## Todo
-- [ ] delete command
 - [ ] config edit command
