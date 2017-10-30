@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -33,6 +34,7 @@ func cmdExec(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
+	fmt.Printf("[CMD]: %s\n", cmdStr)
 	cmd := exec.Command("sh", "-c", string(cmdStr))
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
