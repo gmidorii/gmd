@@ -10,8 +10,8 @@ simple execute saved command.
 go get github.com/midorigreen/gmd
 ```
 
- *requirement*  
-(peco)[https://github.com/peco/peco]  
+*requirement*  
+[peco](https://github.com/peco/peco)  
 
 ### Command
 #### Save command
