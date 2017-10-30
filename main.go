@@ -43,6 +43,12 @@ var cmds = []cli.Command{
 		Usage:   "output cmd list",
 		Action:  cmdList,
 	},
+	{
+		Name:    "del",
+		Aliases: []string{"d"},
+		Usage:   "delete cmd list",
+		Action:  cmdDel,
+	},
 }
 
 type Config struct {
